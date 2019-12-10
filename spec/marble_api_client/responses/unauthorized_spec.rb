@@ -9,8 +9,5 @@
 
 require 'spec_helper'
 
-RSpec.describe MarbleApiClient do
-  it 'has a version number' do
-    expect(MarbleApiClient::VERSION).not_to be nil
-  end
+RSpec.describe MarbleApiClient::Responses::Unauthorized do
 end

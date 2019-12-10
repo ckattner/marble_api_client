@@ -7,10 +7,13 @@
 # LICENSE file in the root directory of this source tree.
 #
 
-require 'spec_helper'
-
-RSpec.describe MarbleApiClient do
-  it 'has a version number' do
-    expect(MarbleApiClient::VERSION).not_to be nil
+module MarbleApiClient
+  module Responses
+    # 401 Response Class
+    class Unauthorized < ClientError
+      def initialize(response)
+        super
+      end
+    end
   end
 end

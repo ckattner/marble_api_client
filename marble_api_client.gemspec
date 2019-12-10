@@ -11,8 +11,8 @@ Gem::Specification.new do |s|
     Write a description.
   DESCRIPTION
 
-  s.authors     = ['Matthew Ruggio']
-  s.email       = ['mruggio@bluemarblepayroll.com']
+  s.authors     = ['Dan Dewar']
+  s.email       = ['ddewar@bluemarblepayroll.com']
   s.files       = `git ls-files`.split("\n")
   s.test_files  = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables = `git ls-files -- bin/*`.split("\n").map { |f| File.basename(f) }
@@ -28,4 +28,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency('rubocop', '~>0.74.0')
   s.add_development_dependency('simplecov', '~>0.17.0')
   s.add_development_dependency('simplecov-console', '~>0.5.0')
+  s.add_development_dependency('webmock')
 end

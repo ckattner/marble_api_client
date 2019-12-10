@@ -8,6 +8,7 @@
 #
 
 require 'pry'
+require 'webmock/rspec'
 
 unless ENV['DISABLE_SIMPLECOV'] == 'true'
   require 'simplecov'

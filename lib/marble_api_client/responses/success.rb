@@ -7,10 +7,15 @@
 # LICENSE file in the root directory of this source tree.
 #
 
-require 'spec_helper'
+module MarbleApiClient
+  module Responses
+    # 200 Response Base Class
+    class Success
+      include HttpMethods
 
-RSpec.describe MarbleApiClient do
-  it 'has a version number' do
-    expect(MarbleApiClient::VERSION).not_to be nil
+      def initialize(response)
+        @response = response
+      end
+    end
   end
 end

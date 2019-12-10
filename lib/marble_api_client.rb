@@ -7,6 +7,12 @@
 # LICENSE file in the root directory of this source tree.
 #
 
-# Top-level namespace
+require 'net/http'
+
+require_relative 'marble_api_client/proxy'
+require_relative 'marble_api_client/requests'
+require_relative 'marble_api_client/responses'
+
+# This class interacts with Blue Marble Payroll Webglobe API
 module MarbleApiClient
 end
