@@ -75,12 +75,17 @@ module MarbleApiClient
       def get_response_object(response, action)
         raise ArgumentError, 'HTTPResponse required' unless response.is_a?(Net::HTTPResponse)
 
-        response_object = RESPONSES.find do |r|
-          r[:code] == response.code && (r[:action] ? r[:action] == action : true)
-        end
+        response_object = find_object(response, action)
+
         raise ArgumentError, "Unexpecred HTTResponse: #{response.code}" unless response_object
 
         response_object[:class_constant].new(response)
+      end
+
+      def find_object(response, action)
+        RESPONSES.find do |r|
+          r[:code] == response.code && (r[:action] ? r[:action] == action : true)
+        end
       end
     end
   end
