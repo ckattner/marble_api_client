@@ -8,7 +8,7 @@
 #
 
 module MarbleApiClient
-  # Main class for sending http requests to url.
+  # Main class for sending HTTP requests to a URL.
   # Requests are sent using request and response objects crafted for each action.
   # Headers can be provided to the Proxy as default headers for all requests
   class Proxy
@@ -57,12 +57,10 @@ module MarbleApiClient
     end
 
     def base_url_valid?(url)
-      uri = begin
-              URI.parse(url)
-            rescue URI::InvalidURIError
-              false
-            end
+      uri = URI.parse(url)
       uri.is_a?(URI::HTTP) || uri.is_a?(URI::HTTPS)
+    rescue URI::InvalidURIError
+      false
     end
   end
 end
