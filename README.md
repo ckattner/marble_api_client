@@ -4,7 +4,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/fba9ec43303ca1595e5a/maintainability)](https://codeclimate.com/github/bluemarblepayroll/marble_api_client/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/fba9ec43303ca1595e5a/test_coverage)](https://codeclimate.com/github/bluemarblepayroll/marble_api_client/test_coverage)[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 
-This library is to simplify requests made to Marble Service Model (Still in procgress). This library offers simple objects to comply with the Marble Service Model request and response objects.
+This library exists to simplify requests made to Marble Service Model (Still in progress). It offers simple objects to comply with the Marble Service Model request and response objects.
 The library currently supports:
 
 * Create
@@ -28,7 +28,7 @@ bundle add marble_api_client
 
 ### Creating the client
 
-A client can be created with a url and any headers that should be included
+A client can be created with a URL and any headers that should be included
 in all requests.
 ````ruby
 client = MarbleApiClient::Proxy.new(
