@@ -11,12 +11,12 @@ module MarbleApiClient
   # Main class for sending HTTP requests to a URL.
   # Requests are sent using request and response objects crafted for each action.
   # Headers can be provided to the Proxy as default headers for all requests
-  class Proxy
+  class Client
     def initialize(base_url, headers: {})
       raise ArgumentError, 'Base URL is not valid' unless base_url_valid?(base_url)
 
       @base_url = base_url
-      @headers = headers
+      @headers = { 'Content-Type': 'application/json' }.merge(headers)
       freeze
     end
 
@@ -38,7 +38,7 @@ module MarbleApiClient
 
       Net::HTTP.start(uri.host, uri.port, use_ssl: ssl?(uri)) do |http|
         request = Net::HTTP::Post.new(uri.request_uri)
-        merged_headers.each { |key, value| request.add_field(key, value) }
+        merged_headers.each { |key, value| request.add_field(key.to_s, value.to_s) }
         request.body = request_object.request_body
         http.request(request)
       end

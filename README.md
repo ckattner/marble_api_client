@@ -29,13 +29,11 @@ bundle add marble_api_client
 ### Creating the client
 
 A client can be created with a URL and any headers that should be included
-in all requests.
+in all requests. By default, Content-Type of Application/JSON is added.
 ````ruby
-client = MarbleApiClient::Proxy.new(
-  'https://www.example.com:3000',
-  headers: { 'Content-Type': 'application/json' }
+client = MarbleApiClient.client(
+  'https://www.example.com:3000'
 )
-
 ````
 
 ### Making Request Objects

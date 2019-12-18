@@ -13,4 +13,9 @@ RSpec.describe MarbleApiClient do
   it 'has a version number' do
     expect(MarbleApiClient::VERSION).not_to be nil
   end
+
+  specify 'client returns a MarbleApiClient::Client' do
+    expect(MarbleApiClient.client('http://www.example.com'))
+      .to be_a(MarbleApiClient::Client)
+  end
 end

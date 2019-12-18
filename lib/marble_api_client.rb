@@ -9,10 +9,15 @@
 
 require 'net/http'
 
-require_relative 'marble_api_client/proxy'
+require_relative 'marble_api_client/client'
 require_relative 'marble_api_client/requests'
 require_relative 'marble_api_client/responses'
 
 # This class interacts with Blue Marble Payroll Webglobe API
 module MarbleApiClient
+  class << self
+    def client(base_url, headers: {})
+      Client.new(base_url, headers)
+    end
+  end
 end

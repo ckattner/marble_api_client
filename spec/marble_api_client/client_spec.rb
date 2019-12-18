@@ -9,21 +9,20 @@
 
 require 'spec_helper'
 
-RSpec.describe MarbleApiClient::Proxy do
-  let(:proxy) do
-    MarbleApiClient::Proxy.new(
-      'http://www.example.com:3000',
-      headers: { 'Content-Type': 'application/json' }
+RSpec.describe MarbleApiClient::Client do
+  let(:client) do
+    MarbleApiClient::Client.new(
+      'http://www.example.com:3000'
     )
   end
 
   it 'requires a base_url' do
-    expect { MarbleApiClient::Proxy.new(nil) }
+    expect { MarbleApiClient::Client.new(nil) }
       .to raise_error(ArgumentError, 'Base URL is not valid')
   end
 
   it 'uses SSL for HTTPS requests' do
-    p = MarbleApiClient::Proxy.new(
+    p = MarbleApiClient::Client.new(
       'https://www.example.com:3000',
       headers: { 'Content-Type': 'application/json' }
     )
@@ -36,19 +35,35 @@ RSpec.describe MarbleApiClient::Proxy do
   context 'create' do
     it 'sends requests to path' do
       stub_request(:post, 'http://www.example.com:3000/custom/path/create')
-      proxy.create('custom/path')
+      client.create('custom/path')
       expect(WebMock).to have_requested(:post, 'http://www.example.com:3000/custom/path/create')
     end
 
     it 'sends requests to path ending in "/"' do
       stub_request(:post, 'http://www.example.com:3000/custom/path/create')
-      proxy.create('custom/path/')
+      client.create('custom/path/')
       expect(WebMock).to have_requested(:post, 'http://www.example.com:3000/custom/path/create')
     end
 
     it 'sends correct headers' do
       stub_request(:post, 'http://www.example.com:3000/custom/path/create')
-      proxy.create('custom/path', headers: { option: 'val' })
+      client.create('custom/path', headers: { option: 'val' })
+      expect(WebMock).to have_requested(:post, 'http://www.example.com:3000/custom/path/create')
+        .with(headers: { 'Content-Type': 'application/json',
+                         option: 'val' })
+    end
+
+    it 'sends symbol headers' do
+      stub_request(:post, 'http://www.example.com:3000/custom/path/create')
+      client.create('custom/path', headers: { option: 'val' })
+      expect(WebMock).to have_requested(:post, 'http://www.example.com:3000/custom/path/create')
+        .with(headers: { 'Content-Type': 'application/json',
+                         option: 'val' })
+    end
+
+    it 'sends string headers' do
+      stub_request(:post, 'http://www.example.com:3000/custom/path/create')
+      client.create('custom/path', headers: { 'option' => 'val' })
       expect(WebMock).to have_requested(:post, 'http://www.example.com:3000/custom/path/create')
         .with(headers: { 'Content-Type': 'application/json',
                          option: 'val' })
@@ -56,7 +71,7 @@ RSpec.describe MarbleApiClient::Proxy do
 
     it 'sends the correct body' do
       stub_request(:post, 'http://www.example.com:3000/custom/path/create')
-      proxy.create('custom/path',
+      client.create('custom/path',
                    create_request: MarbleApiClient::Requests::Create.new(record: { name: 'blue' }))
       expect(WebMock).to have_requested(:post, 'http://www.example.com:3000/custom/path/create')
         .with(body: { context: {}, record: { name: 'blue' } })
@@ -66,13 +81,13 @@ RSpec.describe MarbleApiClient::Proxy do
   context 'index' do
     it 'sends to requested path' do
       stub_request(:post, 'http://www.example.com:3000/custom/path/index')
-      proxy.index('custom/path')
+      client.index('custom/path')
       expect(WebMock).to have_requested(:post, 'http://www.example.com:3000/custom/path/index')
     end
 
     it 'sends the correct headers' do
       stub_request(:post, 'http://www.example.com:3000/custom/path/index')
-      proxy.index('custom/path', headers: { option: 'val' })
+      client.index('custom/path', headers: { option: 'val' })
       expect(WebMock).to have_requested(:post, 'http://www.example.com:3000/custom/path/index')
         .with(headers: { 'Content-Type': 'application/json',
                          option: 'val' })
@@ -80,7 +95,7 @@ RSpec.describe MarbleApiClient::Proxy do
 
     it 'sends the correct body' do
       stub_request(:post, 'http://www.example.com:3000/custom/path/index')
-      proxy.index('custom/path',
+      client.index('custom/path',
                   index_request: MarbleApiClient::Requests::Index.new(record: { name: 'blue' }))
       expect(WebMock).to have_requested(:post, 'http://www.example.com:3000/custom/path/index')
         .with(body: { context: {}, record: { name: 'blue' }, page: 1, page_size: 25 })

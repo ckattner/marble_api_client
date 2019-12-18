@@ -9,11 +9,14 @@
 
 module MarbleApiClient
   module Requests
-    # Create Request Object
+    # Request object for sending create requests.
+    # Uses context and record to send data that
+    # the service model can use in controllers
     class Create
       def initialize(context: {}, record: {})
         @context = context
         @record = record
+        freeze
       end
 
       def request_body
