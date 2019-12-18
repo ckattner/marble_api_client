@@ -10,15 +10,7 @@ module MarbleApiClient
   module Responses
     # 501 Response Class
     class NotImplemented < ServerError
-      ERRORS = 'errors'
-
-      def initialize(response)
-        super
-      end
-
-      def errors
-        parsed_body.dig(ERRORS)
-      end
+      body_attributes :message
     end
   end
 end

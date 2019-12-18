@@ -11,9 +11,7 @@ module MarbleApiClient
   module Responses
     # 401 Response Class
     class Unauthorized < ClientError
-      def initialize(response)
-        super
-      end
+      body_attributes :message, :redirect_url
     end
   end
 end

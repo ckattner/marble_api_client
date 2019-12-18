@@ -12,6 +12,7 @@ module MarbleApiClient
     # 400 Range Response Base Class
     class ClientError
       include HttpMethods
+      include BodyAttributes
 
       def initialize(response)
         @response = response

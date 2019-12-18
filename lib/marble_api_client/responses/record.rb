@@ -11,15 +11,7 @@ module MarbleApiClient
   module Responses
     # 200 Response Create Class
     class Record < Success
-      RECORD = 'record'
-
-      def initialize(response)
-        super
-      end
-
-      def record
-        parsed_body.dig(RECORD)
-      end
+      body_attributes :record
     end
   end
 end

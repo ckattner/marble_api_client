@@ -11,50 +11,9 @@ module MarbleApiClient
   module Responses
     # 200 Response Index Class
     class List < Success
-      PAGE = 'page'
-      PAGE_SIZE = 'pageSize'
-      META = 'meta'
-      RECORDS = 'records'
-      SORT_DIRECTION = 'sortDirection'
-      SORT_COLUMN_INDEX = 'sortColumnIndex'
-      TOTAL = 'total'
-      TOTAL_PAGES = 'totalPages'
-
-      def initialize(response)
-        super
-      end
-
-      def page
-        parsed_body.dig(PAGE)
-      end
-
-      def page_size
-        parsed_body.dig(PAGE_SIZE)
-      end
-
-      def meta
-        parsed_body.dig(META)
-      end
-
-      def records
-        parsed_body.dig(RECORDS)
-      end
-
-      def sort_direction
-        parsed_body.dig(SORT_DIRECTION)
-      end
-
-      def sort_column_index
-        parsed_body.dig(SORT_COLUMN_INDEX)
-      end
-
-      def total
-        parsed_body.dig(TOTAL)
-      end
-
-      def total_pages
-        parsed_body.dig(TOTAL_PAGES)
-      end
+      body_attributes :page, :page_size, :meta, :records,
+                      :sort_direction, :sort_column_index,
+                      :total, :total_pages
     end
   end
 end

@@ -22,12 +22,12 @@ module MarbleApiClient
 
     def create(path, create_request: Requests::Create.new, headers: {})
       response = send_request(path, create_request, headers, 'create')
-      Responses.get_response_object(response, Responses::CREATE_ACTION)
+      Responses.parse_response(response, Responses::CREATE_ACTION)
     end
 
     def index(path, index_request: Requests::Index.new, headers: {})
       response = send_request(path, index_request, headers, 'index')
-      Responses.get_response_object(response, Responses::INDEX_ACTION)
+      Responses.parse_response(response, Responses::INDEX_ACTION)
     end
 
     private

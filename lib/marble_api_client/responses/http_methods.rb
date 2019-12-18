@@ -18,12 +18,6 @@ module MarbleApiClient
       def body
         @response.body
       end
-
-      private
-
-      def parsed_body
-        @parsed_body ||= JSON.parse(body)
-      end
     end
   end
 end

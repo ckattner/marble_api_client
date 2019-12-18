@@ -11,14 +11,14 @@ require 'spec_helper'
 
 RSpec.describe MarbleApiClient::Responses::NotFound do
   context 'provides' do
-    let(:error_hash) { { name: 'invalid' }.to_json }
+    let(:message) { 'invalid' }
     let(:response) do
-      instance_double(Net::HTTPResponse, code: 400, body: { errors: error_hash }.to_json)
+      instance_double(Net::HTTPResponse, code: 400, body: { message: message }.to_json)
     end
 
     it 'errors' do
-      expect(described_class.new(response).errors)
-        .to eq(error_hash)
+      expect(described_class.new(response).message)
+        .to eq(message)
     end
   end
 end

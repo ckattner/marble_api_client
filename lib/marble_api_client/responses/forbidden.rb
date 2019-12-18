@@ -11,19 +11,7 @@ module MarbleApiClient
   module Responses
     # 403 Response Class
     class Forbidden < ClientError
-      STATUS_CODE = 'statusCode'
-      REDIRECT_URL = 'redirectUrl'
-      def initialize(response)
-        super
-      end
-
-      def status_code
-        parsed_body.dig(STATUS_CODE)
-      end
-
-      def redirect_url
-        parsed_body.dig(REDIRECT_URL)
-      end
+      body_attributes :message, :redirect_url
     end
   end
 end

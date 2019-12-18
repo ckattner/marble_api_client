@@ -12,15 +12,12 @@ module MarbleApiClient
     # 500 Response Base Class
     class ServerError
       include HttpMethods
+      include BodyAttributes
 
-      ERRORS = 'errors'
+      body_attributes :errors
 
       def initialize(response)
         @response = response
-      end
-
-      def errors
-        parsed_body.dig(ERRORS)
       end
     end
   end

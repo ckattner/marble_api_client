@@ -14,13 +14,13 @@ RSpec.describe MarbleApiClient::Responses::Forbidden do
     let(:response) do
       instance_double(Net::HTTPResponse,
                       code: 400,
-                      body: { statusCode: '403',
+                      body: { message: 'not allowed',
                               redirectUrl: 'www.example.com/hello' }.to_json)
     end
 
-    it 'Status Code' do
-      expect(described_class.new(response).status_code)
-        .to eq('403')
+    it 'message' do
+      expect(described_class.new(response).message)
+        .to eq('not allowed')
     end
 
     it 'Redirect URL' do

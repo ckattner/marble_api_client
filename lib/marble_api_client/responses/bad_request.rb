@@ -11,15 +11,7 @@ module MarbleApiClient
   module Responses
     # 400 Response Class
     class BadRequest < ClientError
-      ERRORS = 'errors'
-
-      def initialize(response)
-        super
-      end
-
-      def errors
-        parsed_body.dig(ERRORS)
-      end
+      body_attributes :message
     end
   end
 end

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'responses/http_methods'
+require_relative 'responses/body_attributes'
 
 require_relative 'responses/success'
 require_relative 'responses/client_error'
@@ -72,7 +73,7 @@ module MarbleApiClient
     ].freeze
 
     class << self
-      def get_response_object(response, action)
+      def parse_response(response, action)
         raise ArgumentError, 'HTTPResponse required' unless response.is_a?(Net::HTTPResponse)
 
         response_object = find_object(response, action)
@@ -84,7 +85,7 @@ module MarbleApiClient
 
       def find_object(response, action)
         RESPONSES.find do |r|
-          r[:code] == response.code && (r[:action] ? r[:action] == action : true)
+          r[:code] == response.code && (r[:action].nil? || r[:action] == action)
         end
       end
     end

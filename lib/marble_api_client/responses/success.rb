@@ -12,6 +12,7 @@ module MarbleApiClient
     # 200 Response Base Class
     class Success
       include HttpMethods
+      include BodyAttributes
 
       def initialize(response)
         @response = response
