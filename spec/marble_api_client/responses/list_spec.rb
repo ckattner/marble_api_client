@@ -34,42 +34,42 @@ RSpec.describe MarbleApiClient::Responses::List do
                       }.to_json)
     end
 
-    it 'page' do
+    specify 'page' do
       expect(described_class.new(response).page)
         .to eq(page)
     end
 
-    it 'page_size' do
+    specify 'page_size' do
       expect(described_class.new(response).page_size)
         .to eq(page_size)
     end
 
-    it 'meta' do
+    specify 'meta' do
       expect(described_class.new(response).meta)
         .to eq(meta)
     end
 
-    it 'records' do
+    specify 'records' do
       expect(described_class.new(response).records)
         .to eq(records)
     end
 
-    it 'sort driection' do
+    specify 'sort driection' do
       expect(described_class.new(response).sort_direction)
         .to eq(sort_direction)
     end
 
-    it 'sort column index' do
+    specify 'sort column index' do
       expect(described_class.new(response).sort_column_index)
         .to eq(sort_column_index)
     end
 
-    it 'total' do
+    specify 'total' do
       expect(described_class.new(response).total)
         .to eq(total)
     end
 
-    it 'total pages' do
+    specify 'total pages' do
       expect(described_class.new(response).total_pages)
         .to eq(total_pages)
     end

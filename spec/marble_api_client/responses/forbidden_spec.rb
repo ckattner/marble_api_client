@@ -18,12 +18,12 @@ RSpec.describe MarbleApiClient::Responses::Forbidden do
                               redirectUrl: 'www.example.com/hello' }.to_json)
     end
 
-    it 'message' do
+    specify 'message' do
       expect(described_class.new(response).message)
         .to eq('not allowed')
     end
 
-    it 'Redirect URL' do
+    specify 'Redirect URL' do
       expect(described_class.new(response).redirect_url)
         .to eq('www.example.com/hello')
     end

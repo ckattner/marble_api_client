@@ -26,22 +26,22 @@ RSpec.describe MarbleApiClient::Responses::UnprocessableEntity do
                       }.to_json)
     end
 
-    it 'errors' do
+    specify 'errors' do
       expect(described_class.new(response).errors)
         .to eq(errors)
     end
 
-    it 'error properties' do
+    specify 'error properties' do
       expect(described_class.new(response).error_properties)
         .to eq(error_properties)
     end
 
-    it 'warnings' do
+    specify 'warnings' do
       expect(described_class.new(response).warnings)
         .to eq(warnings)
     end
 
-    it 'warning properties' do
+    specify 'warning properties' do
       expect(described_class.new(response).warning_properties)
         .to eq(warning_properties)
     end

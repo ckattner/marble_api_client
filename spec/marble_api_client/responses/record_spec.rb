@@ -16,7 +16,7 @@ RSpec.describe MarbleApiClient::Responses::Record do
       instance_double(Net::HTTPResponse, code: 400, body: { record: record }.to_json)
     end
 
-    it 'errors' do
+    specify 'errors' do
       expect(described_class.new(response).record)
         .to eq(record)
     end
