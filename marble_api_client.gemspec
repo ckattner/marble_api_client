@@ -24,9 +24,9 @@ Gem::Specification.new do |s|
   s.add_development_dependency('guard-rspec', '~>4.7')
   s.add_development_dependency('pry', '~>0')
   s.add_development_dependency('rake', '~> 12')
-  s.add_development_dependency('rspec')
-  s.add_development_dependency('rubocop', '~>0.74.0')
+  s.add_development_dependency('rspec', '~>3.8')
+  s.add_development_dependency('rubocop', '~>0.74')
   s.add_development_dependency('simplecov', '~>0.17.0')
   s.add_development_dependency('simplecov-console', '~>0.5.0')
-  s.add_development_dependency('webmock')
+  s.add_development_dependency('webmock', '~>3.7')
 end
