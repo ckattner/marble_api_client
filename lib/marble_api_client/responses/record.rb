@@ -9,7 +9,8 @@
 
 module MarbleApiClient
   module Responses
-    # 200 Response Create Class
+    # Represents an HTTP 200 responses.
+    # Adds additional properties to the Success class specific to Create requests.
     class Record < Success
       body_attributes :record
     end

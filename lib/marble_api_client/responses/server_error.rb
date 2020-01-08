@@ -9,7 +9,7 @@
 
 module MarbleApiClient
   module Responses
-    # 500 Response Base Class
+    # Represents an HTTP 500 response. This will encompass all errors in the 500-599 range.
     class ServerError
       include HttpMethods
       include BodyAttributes

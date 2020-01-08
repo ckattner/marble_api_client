@@ -9,7 +9,8 @@
 
 module MarbleApiClient
   module Responses
-    # 422 Response Object
+    # Represents an HTTP 422 responses.
+    # Adds additional properties to the ClientError which encompasses the entire 400 level.
     class UnprocessableEntity < ClientError
       body_attributes :errors, :error_properties, :warnings, :warning_properties
     end

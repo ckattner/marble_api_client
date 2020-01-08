@@ -9,7 +9,8 @@
 
 module MarbleApiClient
   module Responses
-    # 200 Response Index Class
+    # Represents an HTTP 200 responses.
+    # Adds additional properties to the Success class specific to Index requests.
     class List < Success
       body_attributes :page, :page_size, :meta, :records,
                       :sort_direction, :sort_column_index,

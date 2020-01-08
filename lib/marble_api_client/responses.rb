@@ -17,7 +17,7 @@ require_relative 'responses/unauthorized'
 require_relative 'responses/unprocessable_entity'
 
 module MarbleApiClient
-  # Module for all response objects
+  # Module for getting response objects
   module Responses
     INDEX_ACTION = 'index'
     CREATE_ACTION = 'create'
@@ -32,6 +32,10 @@ module MarbleApiClient
     NOT_IMPLEMENTED_RESPONSE_CODE = '501'
 
     RESPONSES = [
+      {
+        code: SUCCESS_RESPONSE_CODE,
+        class_constant: Success
+      },
       {
         code: SUCCESS_RESPONSE_CODE,
         action: INDEX_ACTION,
@@ -76,17 +80,40 @@ module MarbleApiClient
       def parse_response(response, action)
         raise ArgumentError, 'HTTPResponse required' unless response.is_a?(Net::HTTPResponse)
 
-        response_object = find_object(response, action)
-
-        raise ArgumentError, "Unexpecred HTTResponse: #{response.code}" unless response_object
-
-        response_object[:class_constant].new(response)
+        find_object(response, action)[:class_constant].new(response)
       end
 
+      private
+
       def find_object(response, action)
-        RESPONSES.find do |r|
-          r[:code] == response.code && (r[:action].nil? || r[:action] == action)
+        code_search = create_searches(response.code)
+        find_by_code_and_action(response.code, action, code_search)
+      end
+
+      # Creates cascading searches using lambdas and the find ifnone argument.
+      # Shortcircuits at first found object and returns it.
+      def create_searches(code)
+        none_found = lambda do
+          raise ArgumentError, "Unexpecred HTTResponse: #{code}"
         end
+
+        rounded_code_search = lambda do
+          RESPONSES.find(none_found) { |r| r[:action].nil? && r[:code] == rounded_code(code) }
+        end
+
+        lambda do
+          RESPONSES.find(rounded_code_search) { |r| r[:action].nil? && r[:code] == code }
+        end
+      end
+
+      def find_by_code_and_action(code, action, ifnone)
+        RESPONSES.find(ifnone) do |r|
+          r[:code] == code && r[:action] == action
+        end
+      end
+
+      def rounded_code(code)
+        code.to_i.floor(-2).to_s
       end
     end
   end

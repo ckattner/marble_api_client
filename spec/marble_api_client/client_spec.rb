@@ -76,6 +76,14 @@ RSpec.describe MarbleApiClient::Client do
       expect(WebMock).to have_requested(:post, 'http://www.example.com:3000/custom/path/create')
         .with(body: { context: {}, record: { name: 'blue' } })
     end
+
+    it 'allows hash instead of Request::Create object' do
+      stub_request(:post, 'http://www.example.com:3000/custom/path/create')
+      client.create('custom/path',
+                    create_request: { record: { name: 'blue' } })
+      expect(WebMock).to have_requested(:post, 'http://www.example.com:3000/custom/path/create')
+        .with(body: { context: {}, record: { name: 'blue' } })
+    end
   end
 
   context 'index' do
@@ -97,6 +105,14 @@ RSpec.describe MarbleApiClient::Client do
       stub_request(:post, 'http://www.example.com:3000/custom/path/index')
       client.index('custom/path',
                    index_request: MarbleApiClient::Requests::Index.new(record: { name: 'blue' }))
+      expect(WebMock).to have_requested(:post, 'http://www.example.com:3000/custom/path/index')
+        .with(body: { context: {}, record: { name: 'blue' }, page: 1, page_size: 25 })
+    end
+
+    it 'allows hash instead of Request::Index object' do
+      stub_request(:post, 'http://www.example.com:3000/custom/path/index')
+      client.index('custom/path',
+                   index_request: { record: { name: 'blue' } })
       expect(WebMock).to have_requested(:post, 'http://www.example.com:3000/custom/path/index')
         .with(body: { context: {}, record: { name: 'blue' }, page: 1, page_size: 25 })
     end

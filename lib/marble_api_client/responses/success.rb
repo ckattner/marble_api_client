@@ -9,7 +9,7 @@
 
 module MarbleApiClient
   module Responses
-    # 200 Response Base Class
+    # Represents an HTTP 200 response. This will encompass all errors in the 200-299 range.
     class Success
       include HttpMethods
       include BodyAttributes

@@ -8,7 +8,8 @@
 #
 module MarbleApiClient
   module Responses
-    # 501 Response Class
+    # Represents an HTTP 501 responses.
+    # Adds additional properties to the ServerError which encompasses the entire 500 level.
     class NotImplemented < ServerError
       body_attributes :message
     end

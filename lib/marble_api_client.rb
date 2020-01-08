@@ -8,6 +8,7 @@
 #
 
 require 'net/http'
+require 'acts_as_hashable'
 
 require_relative 'marble_api_client/client'
 require_relative 'marble_api_client/requests'

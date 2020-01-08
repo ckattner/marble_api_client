@@ -9,7 +9,8 @@
 
 module MarbleApiClient
   module Responses
-    # 401 Response Class
+    # Represents an HTTP 401 responses.
+    # Adds additional properties to the ClientError which encompasses the entire 400 level.
     class Unauthorized < ClientError
       body_attributes :message, :redirect_url
     end

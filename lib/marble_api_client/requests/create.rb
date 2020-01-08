@@ -13,6 +13,8 @@ module MarbleApiClient
     # Uses context and record to send data that
     # the service model can use in controllers
     class Create
+      acts_as_hashable
+
       def initialize(context: {}, record: {})
         @context = context
         @record = record

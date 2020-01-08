@@ -9,7 +9,7 @@
 
 module MarbleApiClient
   module Responses
-    # 400 Range Response Base Class
+    # Represents an HTTP 400 response. This will encompass all errors in the 400-499 range.
     class ClientError
       include HttpMethods
       include BodyAttributes

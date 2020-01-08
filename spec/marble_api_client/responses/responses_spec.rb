@@ -19,8 +19,8 @@ RSpec.describe MarbleApiClient::Responses do
   describe 'objects returned for various HTTP status codes' do
     specify '200' do
       response = Net::HTTPResponse.new(1.0, '200', 'OK')
-      response.uri = 'www.exampleuri.com/index'
-      expect(described_class.parse_response(response, 'index'))
+      response.uri = 'www.exampleuri.com/notarealaction'
+      expect(described_class.parse_response(response, 'notarealaction'))
         .to be_a_kind_of(MarbleApiClient::Responses::Success)
     end
 
@@ -85,6 +85,20 @@ RSpec.describe MarbleApiClient::Responses do
       response.uri = 'www.exampleuri.com/index'
       expect(described_class.parse_response(response, 'index'))
         .to be_a_kind_of(MarbleApiClient::Responses::NotImplemented)
+    end
+
+    specify '503' do
+      response = Net::HTTPResponse.new(1.0, '503', 'Server Error')
+      response.uri = 'www.exampleuri.com/index'
+      expect(described_class.parse_response(response, 'index'))
+        .to be_a_kind_of(MarbleApiClient::Responses::ServerError)
+    end
+
+    specify '1000' do
+      response = Net::HTTPResponse.new(1.0, '1000', 'Not Real Error')
+      response.uri = 'www.exampleuri.com/index'
+      expect { described_class.parse_response(response, 'index') }
+        .to raise_error(ArgumentError)
     end
   end
 end

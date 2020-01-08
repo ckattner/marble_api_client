@@ -9,7 +9,8 @@
 
 module MarbleApiClient
   module Responses
-    # 400 Response Class
+    # Represents an HTTP 400 responses.
+    # Adds additional properties to the ClientError which encompasses the entire 400 level.
     class BadRequest < ClientError
       body_attributes :message
     end

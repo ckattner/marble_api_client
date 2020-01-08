@@ -9,7 +9,7 @@
 
 module MarbleApiClient
   module Responses
-    # Module assumes existance of @response Net::HTTPResponse object
+    # This module requires a "response" method which returns an instance of Net::HTTPResponse.
     module HttpMethods
       def code
         @response.code
