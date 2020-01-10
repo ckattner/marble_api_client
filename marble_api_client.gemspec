@@ -5,10 +5,11 @@ require './lib/marble_api_client/version'
 Gem::Specification.new do |s|
   s.name        = 'marble_api_client'
   s.version     = MarbleApiClient::VERSION
-  s.summary     = 'Write a summary.'
+  s.summary     = 'Library to simplify requests made to Marble Service Model.'
 
   s.description = <<-DESCRIPTION
-    Write a description.
+    This library exists to simplify requests made to Marble Service Model (Still in progress).
+    It offers simple objects to comply with the Marble Service Model request and response objects.
   DESCRIPTION
 
   s.authors     = ['Dan Dewar']
