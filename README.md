@@ -1,7 +1,7 @@
 # Marble API Client
 
 [![Gem Version](https://badge.fury.io/rb/marble_api_client.svg)](https://badge.fury.io/rb/marble_api_client) [![Build Status](https://travis-ci.org/bluemarblepayroll/marble_api_client.svg?branch=master)](https://travis-ci.org/bluemarblepayroll/marble_api_client)
-[![Maintainability](https://api.codeclimate.com/v1/badges/fba9ec43303ca1595e5a/maintainability)](https://codeclimate.com/github/bluemarblepayroll/marble_api_client/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/fba9ec43303ca1595e5a/test_coverage)](https://codeclimate.com/github/bluemarblepayroll/marble_api_client/test_coverage)[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Maintainability](https://api.codeclimate.com/v1/badges/fba9ec43303ca1595e5a/maintainability)](https://codeclimate.com/github/bluemarblepayroll/marble_api_client/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/fba9ec43303ca1595e5a/test_coverage)](https://codeclimate.com/github/bluemarblepayroll/marble_api_client/test_coverage) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 
 This library exists to simplify requests made to Marble Service Model (Still in progress). It offers simple objects to comply with the Marble Service Model request and response objects.
