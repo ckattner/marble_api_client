@@ -1,3 +1,9 @@
+# 1.1.0 (TBD)
+
+Changes:
+
+* Removed support for Ruby < 2.5
+
 # 1.0.1 (January 10th, 2020)
 
 Added gem summary and description.
